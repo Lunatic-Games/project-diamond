@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg23x1u5g3qcw"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_e227l"]
+[ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://assets/art/square_10_by_10.png" id="1_tg28r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1f3r"]
+size = Vector2(49.4975, 49.4975)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(114, 69)
+script = ExtResource("1_e227l")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 3.05176e-05)
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_d1f3r")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture_filter = 1
+rotation = -0.785398
+scale = Vector2(5, 5)
+texture = ExtResource("1_tg28r")
