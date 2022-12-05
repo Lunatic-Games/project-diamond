@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Resource",
+"class": &"Creature",
+"language": &"GDScript",
+"path": "res://_data/creature/creature.gd"
+}]
+_global_script_class_icons={
+"Creature": ""
+}
+
 [application]
 
 config/name="Diamond"

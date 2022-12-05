@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg23x1u5g3qcw"]
+[gd_scene load_steps=4 format=3 uid="uid://4r2x11tkcpr8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e227l"]
-[ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://assets/art/square_10_by_10.png" id="1_tg28r"]
+[ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://_assets/art/square_10_by_10.png" id="2_xdmyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1f3r"]
 size = Vector2(49.4975, 49.4975)
@@ -21,4 +21,4 @@ self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
 texture_filter = 1
 rotation = -0.785398
 scale = Vector2(5, 5)
-texture = ExtResource("1_tg28r")
+texture = ExtResource("2_xdmyq")

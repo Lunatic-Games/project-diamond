@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkwh3rk7kix8b"]
 
-[ext_resource type="PackedScene" uid="uid://bg23x1u5g3qcw" path="res://player/player.tscn" id="1_5l7ok"]
+[ext_resource type="PackedScene" uid="uid://4r2x11tkcpr8" path="res://player/player.tscn" id="1_5l7ok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7p7b"]
 size = Vector2(50, 720)
@@ -33,22 +33,26 @@ position = Vector2(594, 343)
 position = Vector2(-25, 360)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+visible = false
 shape = SubResource("RectangleShape2D_m7p7b")
 
 [node name="RightWall" type="StaticBody2D" parent="."]
 position = Vector2(1305, 360)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+visible = false
 shape = SubResource("RectangleShape2D_stgto")
 
 [node name="TopWall" type="StaticBody2D" parent="."]
 position = Vector2(640, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+visible = false
 shape = SubResource("RectangleShape2D_yqepw")
 
 [node name="BottomWall" type="StaticBody2D" parent="."]
 position = Vector2(640, 745)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+visible = false
 shape = SubResource("RectangleShape2D_um4go")

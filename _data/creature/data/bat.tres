@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://crcbr6hu1oxfr"]
+
+[ext_resource type="Script" path="res://_data/creature/creature.gd" id="1_mrbyt"]
+[ext_resource type="PackedScene" uid="uid://k6jst5mqfus3" path="res://_data/creature_sprite/data/bat.tscn" id="2_8j8ks"]
+
+[resource]
+script = ExtResource("1_mrbyt")
+sprite = ExtResource("2_8j8ks")
