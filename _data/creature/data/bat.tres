@@ -5,4 +5,5 @@
 
 [resource]
 script = ExtResource("1_mrbyt")
+max_health = 10
 sprite = ExtResource("2_8j8ks")
