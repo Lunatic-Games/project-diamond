@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg85ccysuydx6"]
+
+[ext_resource type="Script" path="res://combat/health_bar/health_bar.gd" id="1_oegqx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb5i5"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6f6nn"]
+bg_color = Color(0.454902, 0.670588, 0.407843, 1)
+
+[node name="HealthBar" type="ProgressBar"]
+custom_minimum_size = Vector2(200, 25)
+theme_override_styles/background = SubResource("StyleBoxFlat_cb5i5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6f6nn")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_oegqx")
+
+[node name="Stats" type="HBoxContainer" parent="."]
+offset_top = -40.0
+offset_right = 200.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="DamageDealt" type="Label" parent="Stats"]
+offset_left = 55.0
+offset_top = 7.0
+offset_right = 88.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.670588, 0.407843, 0.407843, 1)
+text = "-100"
+
+[node name="HealthHealed" type="Label" parent="Stats"]
+offset_left = 108.0
+offset_top = 7.0
+offset_right = 145.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.454902, 0.670588, 0.407843, 1)
+text = "+100"

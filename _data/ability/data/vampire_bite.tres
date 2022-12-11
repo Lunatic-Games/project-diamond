@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b8mu7acfpvndn"]
+
+[ext_resource type="Script" path="res://_data/ability/ability.gd" id="1_6phg8"]
+
+[resource]
+script = ExtResource("1_6phg8")
+name = "Vampire Bite"
+damage_amount = 1
+min_number_of_hits = 1
+max_number_of_hits = 1
+life_vamp_ratio = 1.0
+heal_amount = 0
+full_heal = false
+burn_ratio = 0.0
+paralyze_ratio = 0.0

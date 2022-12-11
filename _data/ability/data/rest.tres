@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cme47062y6n46"]
+
+[ext_resource type="Script" path="res://_data/ability/ability.gd" id="1_dpdtj"]
+
+[resource]
+script = ExtResource("1_dpdtj")
+name = "Rest"
+damage_amount = 0
+min_number_of_hits = 1
+max_number_of_hits = 1
+life_vamp_ratio = 0.0
+heal_amount = 0
+full_heal = true
+burn_ratio = 0.0
+paralyze_ratio = 0.0

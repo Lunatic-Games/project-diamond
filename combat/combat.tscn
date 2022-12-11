@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnn0kq6uf8qri"]
+[gd_scene load_steps=7 format=3 uid="uid://dnn0kq6uf8qri"]
 
 [ext_resource type="Script" path="res://combat/combat.gd" id="1_a0fvq"]
 [ext_resource type="Resource" uid="uid://crcbr6hu1oxfr" path="res://_data/creature/data/bat.tres" id="2_qvkrj"]
+[ext_resource type="Resource" uid="uid://cl0gq0e7rsofd" path="res://_data/ability/data/wing_slash.tres" id="3_4cdd8"]
 [ext_resource type="PackedScene" uid="uid://cgqxdy3dcm0qq" path="res://combat/ability_panel/ability_panel.tscn" id="3_m6hf4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb5i5"]
-bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6f6nn"]
-bg_color = Color(0.454902, 0.670588, 0.407843, 1)
+[ext_resource type="Script" path="res://combat/ability_processor.gd" id="4_if3ud"]
+[ext_resource type="PackedScene" uid="uid://dg85ccysuydx6" path="res://combat/health_bar/health_bar.tscn" id="5_2jn85"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -18,8 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a0fvq")
-ally_creature = ExtResource("2_qvkrj")
 enemy_creature = ExtResource("2_qvkrj")
+enemy_ability = ExtResource("3_4cdd8")
 
 [node name="AllyPosition" type="Marker2D" parent="."]
 position = Vector2(256, 360)
@@ -28,19 +25,20 @@ position = Vector2(256, 360)
 position = Vector2(1024, 360)
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -16.0
+offset_right = 4.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
 [node name="AbilityPanel" parent="." instance=ExtResource("3_m6hf4")]
-layout_mode = 1
 
 [node name="HealthBars" type="HBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -55,20 +53,17 @@ grow_vertical = 2
 theme_override_constants/separation = 560
 alignment = 1
 
-[node name="AllyHealthBar" type="ProgressBar" parent="HealthBars"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_cb5i5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6f6nn")
-value = 50.0
-show_percentage = false
+[node name="AllyHealthBar" parent="HealthBars" instance=ExtResource("5_2jn85")]
+offset_left = 20.0
+offset_right = 220.0
+offset_bottom = 25.0
 
-[node name="EnemyHealthBar" type="ProgressBar" parent="HealthBars"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_cb5i5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6f6nn")
-value = 50.0
-show_percentage = false
+[node name="EnemyHealthBar" parent="HealthBars" instance=ExtResource("5_2jn85")]
+offset_left = 780.0
+offset_right = 980.0
+offset_bottom = 25.0
+
+[node name="AbilityProcessor" type="Node" parent="."]
+script = ExtResource("4_if3ud")
 
 [connection signal="ability_selected" from="AbilityPanel" to="." method="_on_ability_panel_ability_selected"]

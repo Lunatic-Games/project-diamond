@@ -1,14 +1,27 @@
-extends CharacterBody2D
+extends Node
 
 
-const MAX_SPEED: float = 250.0
-const MOVE_ACCELERATION: float = 2.0
+var character_name = "NAME"
+var party: Array[Fighter] = []
 
-func _physics_process(delta: float) -> void:
-	var h_axis = Input.get_axis("move_left", "move_right")
-	var v_axis = Input.get_axis("move_up", "move_down")
-	var movement_input = Vector2(h_axis, v_axis).normalized()
-	velocity = velocity.move_toward(movement_input * MAX_SPEED, 
-		MOVE_ACCELERATION * delta * 1000.0)
+
+func _ready():
+	var bat = load("res://_data/creature/data/bat.tres")
 	
-	move_and_slide()
+	var starter = Fighter.new(bat)
+	party.append(starter)
+	
+	var second = Fighter.new(bat)
+	party.append(second)
+
+
+func get_next_ready_fighter(ignored=[]):
+	for fighter in party:
+		if fighter not in ignored and not fighter.is_dead():
+			return fighter
+	return null
+
+
+func respawn():
+	for fighter in party:
+		fighter.full_restore()

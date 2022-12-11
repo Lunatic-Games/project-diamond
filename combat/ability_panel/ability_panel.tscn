@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgqxdy3dcm0qq"]
+[gd_scene load_steps=6 format=3 uid="uid://cgqxdy3dcm0qq"]
 
 [ext_resource type="Script" path="res://combat/ability_panel/ability_panel.gd" id="1_p1qb4"]
+[ext_resource type="Resource" uid="uid://cl0gq0e7rsofd" path="res://_data/ability/data/wing_slash.tres" id="2_xfywq"]
+[ext_resource type="Resource" uid="uid://b8mu7acfpvndn" path="res://_data/ability/data/vampire_bite.tres" id="3_2xnv7"]
+[ext_resource type="Resource" uid="uid://cme47062y6n46" path="res://_data/ability/data/rest.tres" id="4_xpboh"]
+[ext_resource type="Resource" uid="uid://dm1enasbiy1d5" path="res://_data/ability/data/flail.tres" id="5_hbvrw"]
 
 [node name="AbilityPanel" type="ColorRect"]
 anchors_preset = 12
@@ -12,9 +16,10 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.0588235, 0.0588235, 0.0588235, 1)
 script = ExtResource("1_p1qb4")
-abilities = ["Fireball", "Water splash", "Electric boogoolo", "Heal"]
+abilities = [ExtResource("2_xfywq"), ExtResource("3_2xnv7"), ExtResource("4_xpboh"), ExtResource("5_hbvrw")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,10 +31,7 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 25
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer"]
-offset_left = 50.0
-offset_top = 25.0
-offset_right = 1230.0
-offset_bottom = 146.0
+layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 30
 columns = 2
