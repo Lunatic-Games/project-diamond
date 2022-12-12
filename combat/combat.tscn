@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnn0kq6uf8qri"]
+[gd_scene load_steps=8 format=3 uid="uid://dnn0kq6uf8qri"]
 
 [ext_resource type="Script" path="res://combat/combat.gd" id="1_a0fvq"]
 [ext_resource type="Resource" uid="uid://crcbr6hu1oxfr" path="res://_data/creature/data/bat.tres" id="2_qvkrj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgqxdy3dcm0qq" path="res://combat/ability_panel/ability_panel.tscn" id="3_m6hf4"]
 [ext_resource type="Script" path="res://combat/ability_processor.gd" id="4_if3ud"]
 [ext_resource type="PackedScene" uid="uid://dg85ccysuydx6" path="res://combat/health_bar/health_bar.tscn" id="5_2jn85"]
+[ext_resource type="PackedScene" uid="uid://bm86063c47is6" path="res://combat/capture_panel/capture_panel.tscn" id="7_0l377"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -66,4 +67,21 @@ offset_bottom = 25.0
 [node name="AbilityProcessor" type="Node" parent="."]
 script = ExtResource("4_if3ud")
 
+[node name="CapturePanel" parent="." instance=ExtResource("7_0l377")]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.5
+offset_top = -301.0
+offset_right = 98.5
+offset_bottom = -171.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [connection signal="ability_selected" from="AbilityPanel" to="." method="_on_ability_panel_ability_selected"]
+[connection signal="captured" from="CapturePanel" to="." method="_on_capture_panel_captured"]
+[connection signal="got_away" from="CapturePanel" to="." method="_on_capture_panel_got_away"]
+[connection signal="released" from="CapturePanel" to="." method="_on_capture_panel_released"]

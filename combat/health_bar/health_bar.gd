@@ -21,8 +21,7 @@ func reset_stats():
 
 
 func update(health_difference: int, fighter: Fighter):
-	var ratio = float(fighter.current_health) / float(fighter.max_health)
-	value = ratio * 100.0
+	value = 100.0 * float(fighter.current_health) / float(fighter.max_health)
 	
 	if health_difference > 0:
 		health_healed_this_turn += health_difference

@@ -9,6 +9,10 @@ extends Control
 
 @onready var ally_health_bar := $HealthBars/AllyHealthBar
 @onready var enemy_health_bar := $HealthBars/EnemyHealthBar
+
+@onready var ability_panel = $AbilityPanel
+@onready var capture_panel = $CapturePanel
+
 @onready var ability_processor = $AbilityProcessor
 
 var ally_fighter: Fighter
@@ -76,9 +80,24 @@ func _on_fighter_died(_fighter: Fighter):
 			ally_sprite.queue_free()
 			ally_sprite = instantiate_fighter(ally_fighter, ally_position.position)
 			ally_health_bar.reset_stats()
-			return
+		else:
+			print("LOST")
+			Player.respawn()
+			get_tree().change_scene_to_file("res://world/world.tscn")
+		return
 		
-		print("LOST")
-		Player.respawn()
-	
+	ability_panel.hide()
+	capture_panel.show()
+
+
+func _on_capture_panel_captured():
+	Player.add_to_party(enemy_fighter)
+	get_tree().change_scene_to_file("res://world/world.tscn")
+
+
+func _on_capture_panel_got_away():
+	get_tree().change_scene_to_file("res://world/world.tscn")
+
+
+func _on_capture_panel_released():
 	get_tree().change_scene_to_file("res://world/world.tscn")

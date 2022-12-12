@@ -1,6 +1,8 @@
 extends Node
 
 
+const MAX_PARTY_SIZE = 4
+
 var character_name = "NAME"
 var party: Array[Fighter] = []
 
@@ -25,3 +27,13 @@ func get_next_ready_fighter(ignored=[]):
 func respawn():
 	for fighter in party:
 		fighter.full_restore()
+
+
+func is_party_full():
+	return party.size() >= MAX_PARTY_SIZE
+
+
+func add_to_party(fighter: Fighter):
+	fighter.full_restore()
+	party.append(fighter)
+	print("Added to party")

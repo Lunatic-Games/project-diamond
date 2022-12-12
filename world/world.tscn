@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2ypjsnye011c"]
+[gd_scene load_steps=12 format=3 uid="uid://b2ypjsnye011c"]
 
+[ext_resource type="Script" path="res://world/world.gd" id="1_er07r"]
 [ext_resource type="Texture2D" uid="uid://dsb883d2jglhc" path="res://_assets/art/square_3_by_3.png" id="2_240ww"]
 [ext_resource type="Script" path="res://world/hostile_area/hostile_area.gd" id="2_fvimf"]
 [ext_resource type="PackedScene" uid="uid://041puil2kord" path="res://world/npc/npc.tscn" id="4_c20iu"]
 [ext_resource type="PackedScene" uid="uid://ci71jbhtxdmji" path="res://world/player_body/player_body.tscn" id="4_n64tc"]
+[ext_resource type="PackedScene" uid="uid://dl0027dnke2nw" path="res://menus/party_view/party_view.tscn" id="5_djaws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ngh"]
 size = Vector2(300, 300)
@@ -21,6 +23,7 @@ size = Vector2(1380, 50)
 size = Vector2(1380, 50)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_er07r")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -74,3 +77,8 @@ shape = SubResource("RectangleShape2D_um4go")
 position = Vector2(640, 360)
 
 [node name="NPC" parent="." instance=ExtResource("4_c20iu")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PartyView" parent="CanvasLayer" instance=ExtResource("5_djaws")]
+visible = false
