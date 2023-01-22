@@ -1,84 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2ypjsnye011c"]
+[gd_scene load_steps=4 format=3 uid="uid://cs0rwjocopgj0"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_er07r"]
-[ext_resource type="Texture2D" uid="uid://dsb883d2jglhc" path="res://_assets/art/square_3_by_3.png" id="2_240ww"]
-[ext_resource type="Script" path="res://world/hostile_area/hostile_area.gd" id="2_fvimf"]
-[ext_resource type="PackedScene" uid="uid://041puil2kord" path="res://world/npc/npc.tscn" id="4_c20iu"]
-[ext_resource type="PackedScene" uid="uid://ci71jbhtxdmji" path="res://world/player_body/player_body.tscn" id="4_n64tc"]
-[ext_resource type="PackedScene" uid="uid://dl0027dnke2nw" path="res://menus/party_view/party_view.tscn" id="5_djaws"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ngh"]
-size = Vector2(300, 300)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7p7b"]
-size = Vector2(50, 720)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_stgto"]
-size = Vector2(50, 720)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqepw"]
-size = Vector2(1380, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_um4go"]
-size = Vector2(1380, 50)
+[ext_resource type="PackedScene" uid="uid://c43aahxoilxal" path="res://_data/location/data/start_location.tscn" id="2_u18mi"]
+[ext_resource type="PackedScene" uid="uid://b1hedcpgl4tbm" path="res://menus/party_view/party_view.tscn" id="5_djaws"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_er07r")
 
-[node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1280.0
-offset_bottom = 720.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+[node name="StartLocation" parent="." instance=ExtResource("2_u18mi")]
 
-[node name="HostileArea" type="Area2D" parent="."]
-position = Vector2(987, 342)
-script = ExtResource("2_fvimf")
-encounter_chance = 0.005
-minimum_amount_travelled = 100.0
-grass_texture = ExtResource("2_240ww")
+[node name="Overlay" type="CanvasLayer" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HostileArea"]
-shape = SubResource("RectangleShape2D_k1ngh")
-
-[node name="LeftWall" type="StaticBody2D" parent="."]
-position = Vector2(-25, 360)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
-visible = false
-shape = SubResource("RectangleShape2D_m7p7b")
-
-[node name="RightWall" type="StaticBody2D" parent="."]
-position = Vector2(1305, 360)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
-visible = false
-shape = SubResource("RectangleShape2D_stgto")
-
-[node name="TopWall" type="StaticBody2D" parent="."]
-position = Vector2(640, -25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
-visible = false
-shape = SubResource("RectangleShape2D_yqepw")
-
-[node name="BottomWall" type="StaticBody2D" parent="."]
-position = Vector2(640, 745)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
-visible = false
-shape = SubResource("RectangleShape2D_um4go")
-
-[node name="PlayerBody" parent="." instance=ExtResource("4_n64tc")]
-position = Vector2(640, 360)
-
-[node name="NPC" parent="." instance=ExtResource("4_c20iu")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PartyView" parent="CanvasLayer" instance=ExtResource("5_djaws")]
+[node name="PartyView" parent="Overlay" instance=ExtResource("5_djaws")]
 visible = false

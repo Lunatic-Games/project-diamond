@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnn0kq6uf8qri"]
+[gd_scene load_steps=5 format=3 uid="uid://dnn0kq6uf8qri"]
 
 [ext_resource type="Script" path="res://combat/combat.gd" id="1_a0fvq"]
-[ext_resource type="Resource" uid="uid://crcbr6hu1oxfr" path="res://_data/creature/data/bat.tres" id="2_qvkrj"]
-[ext_resource type="Resource" uid="uid://cl0gq0e7rsofd" path="res://_data/ability/data/wing_slash.tres" id="3_4cdd8"]
 [ext_resource type="PackedScene" uid="uid://cgqxdy3dcm0qq" path="res://combat/ability_panel/ability_panel.tscn" id="3_m6hf4"]
-[ext_resource type="Script" path="res://combat/ability_processor.gd" id="4_if3ud"]
-[ext_resource type="PackedScene" uid="uid://dg85ccysuydx6" path="res://combat/health_bar/health_bar.tscn" id="5_2jn85"]
 [ext_resource type="PackedScene" uid="uid://bm86063c47is6" path="res://combat/capture_panel/capture_panel.tscn" id="7_0l377"]
+[ext_resource type="PackedScene" uid="uid://c2yqodd148wj" path="res://combat/side/side.tscn" id="7_daoaw"]
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -16,17 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a0fvq")
-enemy_creature = ExtResource("2_qvkrj")
-enemy_ability = ExtResource("3_4cdd8")
-
-[node name="AllyPosition" type="Marker2D" parent="."]
-position = Vector2(256, 360)
-
-[node name="EnemyPosition" type="Marker2D" parent="."]
-position = Vector2(1024, 360)
 
 [node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
@@ -38,38 +27,12 @@ grow_vertical = 2
 color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
 [node name="AbilityPanel" parent="." instance=ExtResource("3_m6hf4")]
-
-[node name="HealthBars" type="HBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -500.0
-offset_top = -141.0
-offset_right = 500.0
-offset_bottom = -101.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 560
-alignment = 1
-
-[node name="AllyHealthBar" parent="HealthBars" instance=ExtResource("5_2jn85")]
-offset_left = 20.0
-offset_right = 220.0
-offset_bottom = 25.0
-
-[node name="EnemyHealthBar" parent="HealthBars" instance=ExtResource("5_2jn85")]
-offset_left = 780.0
-offset_right = 980.0
-offset_bottom = 25.0
-
-[node name="AbilityProcessor" type="Node" parent="."]
-script = ExtResource("4_if3ud")
+layout_mode = 1
+offset_top = -142.0
 
 [node name="CapturePanel" parent="." instance=ExtResource("7_0l377")]
 visible = false
-anchors_preset = 7
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -80,6 +43,14 @@ offset_right = 98.5
 offset_bottom = -171.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="PlayerSide" parent="." instance=ExtResource("7_daoaw")]
+
+[node name="EnemySide" parent="." instance=ExtResource("7_daoaw")]
+offset_left = 974.0
+offset_top = 361.0
+offset_right = 974.0
+offset_bottom = 361.0
 
 [connection signal="ability_selected" from="AbilityPanel" to="." method="_on_ability_panel_ability_selected"]
 [connection signal="captured" from="CapturePanel" to="." method="_on_capture_panel_captured"]

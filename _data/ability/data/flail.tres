@@ -11,5 +11,5 @@ max_number_of_hits = 1
 life_vamp_ratio = 0.0
 heal_amount = 0
 full_heal = false
-burn_ratio = 0.0
-paralyze_ratio = 0.0
+burn_probability = 0.0
+paralyze_probability = 0.0

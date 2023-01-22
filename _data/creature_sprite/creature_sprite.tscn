@@ -1,8 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci4vrunsn6thx"]
-
-[ext_resource type="Script" path="res://_data/creature_sprite/creature_sprite.gd" id="1_gk6vx"]
+[gd_scene format=3 uid="uid://ci4vrunsn6thx"]
 
 [node name="CreatureSprite" type="Node2D"]
 position = Vector2(634, 363)
 scale = Vector2(4, 4)
-script = ExtResource("1_gk6vx")

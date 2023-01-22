@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5k8sd5yevu3a"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://menus/party_view/fighter_view.gd" id="1_ugsi5"]
+[ext_resource type="Script" path="res://menus/party_view/fighter_view/fighter_view.gd" id="1_ugsi5"]
 
 [node name="FighterView" type="ColorRect"]
 custom_minimum_size = Vector2(400, 250)
@@ -9,6 +9,7 @@ script = ExtResource("1_ugsi5")
 metadata/_edit_group_ = true
 
 [node name="Fill" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

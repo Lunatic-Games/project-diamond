@@ -1,9 +1,15 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://crcbr6hu1oxfr"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://crcbr6hu1oxfr"]
 
+[ext_resource type="Resource" uid="uid://cl0gq0e7rsofd" path="res://_data/ability/data/wing_slash.tres" id="1_5376e"]
 [ext_resource type="Script" path="res://_data/creature/creature.gd" id="1_mrbyt"]
+[ext_resource type="Resource" uid="uid://b8mu7acfpvndn" path="res://_data/ability/data/vampire_bite.tres" id="2_1spvk"]
 [ext_resource type="PackedScene" uid="uid://k6jst5mqfus3" path="res://_data/creature_sprite/data/bat.tscn" id="2_8j8ks"]
+[ext_resource type="Resource" uid="uid://cme47062y6n46" path="res://_data/ability/data/rest.tres" id="3_5ac1c"]
+[ext_resource type="Resource" uid="uid://dm1enasbiy1d5" path="res://_data/ability/data/flail.tres" id="4_eooje"]
 
 [resource]
 script = ExtResource("1_mrbyt")
+name = "Bat"
 max_health = 10
 sprite_scene = ExtResource("2_8j8ks")
+default_abilities = [ExtResource("1_5376e"), ExtResource("2_1spvk"), ExtResource("3_5ac1c"), ExtResource("4_eooje")]

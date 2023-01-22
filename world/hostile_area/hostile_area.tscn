@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvgmxpfrjx2kr"]
+
+[ext_resource type="Script" path="res://world/hostile_area/hostile_area.gd" id="1_b7w21"]
+[ext_resource type="Texture2D" uid="uid://big2a6vfdgtws" path="res://_assets/art/square_4_by_4.png" id="3_4wnlv"]
+[ext_resource type="Script" path="res://world/hostile_area/hostile_area_texture.gd" id="3_7wmdx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgft2"]
+size = Vector2(300, 300)
+
+[node name="HostileArea" type="Area2D" groups=["HOSTILE_AREA"]]
+position = Vector2(640, 360)
+script = ExtResource("1_b7w21")
+possible_creatures = []
+encounter_chance = 0.005
+minimum_amount_travelled = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dgft2")
+
+[node name="Texture" type="Node2D" parent="."]
+script = ExtResource("3_7wmdx")
+collision_shape_path = NodePath("../CollisionShape2D")
+grass_texture = ExtResource("3_4wnlv")

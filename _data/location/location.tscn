@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cerdey02xv82v"]
+
+[ext_resource type="Script" path="res://_data/location/location.gd" id="1_iw23d"]
+
+[node name="Location" type="Node2D"]
+script = ExtResource("1_iw23d")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="HostileAreas" type="Node2D" parent="."]
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="DefaultSpawnMarker" type="Marker2D" parent="."]
+position = Vector2(640, 360)

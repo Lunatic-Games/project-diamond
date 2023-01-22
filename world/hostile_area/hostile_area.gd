@@ -1,12 +1,11 @@
+class_name HostileArea
 extends Area2D
 
+signal encounter_triggered
+
+@export var possible_creatures: Array[Creature] = []
 @export_range(0.0, 1.0) var encounter_chance: float  # For moving one pixel
 @export var minimum_amount_travelled: float
-
-@export_group("Texturing")
-@export var grass_texture: Texture
-@export var grass_spacing: Vector2i = Vector2i(25, 25)
-@export var grass_scale: int = 3
 
 @onready var collision_shape = $CollisionShape2D
 
@@ -37,7 +36,7 @@ func _process(_delta):
 
 
 func check_for_encounter(distance_travelled: float):
-	if distance_travelled == 0.0:
+	if distance_travelled == 0.0 or possible_creatures.is_empty():
 		return
 	
 	_additive_distance_travelled += distance_travelled
@@ -45,23 +44,6 @@ func check_for_encounter(distance_travelled: float):
 		return
 	
 	if randf_range(0.0, 1.0 / distance_travelled) < encounter_chance:
-		get_tree().change_scene_to_file("res://combat/combat.tscn")
+		emit_signal("encounter_triggered", possible_creatures.pick_random())
 		_additive_distance_travelled = 0.0
-
-
-func _draw():
-	var area_shape := collision_shape.shape as RectangleShape2D
-	assert(area_shape)
-	assert(grass_texture)
-	assert(grass_spacing.x > 0)
-	assert(grass_spacing.y > 0)
-	assert(grass_scale > 0)
-	
-	var area_size: Vector2 = area_shape.size
-	var pos: Vector2 = collision_shape.position - area_size / 2.0
-	
-	for x in range(0, area_size.x, grass_spacing.x):
-		for y in range(0, area_size.y, grass_spacing.y):
-			draw_set_transform(pos + Vector2(x, y), 45.0, Vector2.ONE * grass_scale)
-			draw_texture(grass_texture, Vector2.ZERO)
 

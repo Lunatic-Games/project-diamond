@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl0027dnke2nw"]
+[gd_scene load_steps=3 format=3 uid="uid://b1hedcpgl4tbm"]
 
-[ext_resource type="PackedScene" uid="uid://b5k8sd5yevu3a" path="res://menus/party_view/fighter_view.tscn" id="1_0fu8x"]
+[ext_resource type="PackedScene" path="res://menus/party_view/fighter_view/fighter_view.tscn" id="1_0fu8x"]
 [ext_resource type="Script" path="res://menus/party_view/party_view.gd" id="1_20eej"]
 
 [node name="PartyView" type="GridContainer"]
@@ -22,23 +22,15 @@ columns = 2
 script = ExtResource("1_20eej")
 
 [node name="FighterView" parent="." instance=ExtResource("1_0fu8x")]
-offset_right = 400.0
-offset_bottom = 250.0
+layout_mode = 2
 
 [node name="FighterView2" parent="." instance=ExtResource("1_0fu8x")]
-offset_left = 392.0
-offset_right = 792.0
-offset_bottom = 250.0
+layout_mode = 2
 
 [node name="FighterView3" parent="." instance=ExtResource("1_0fu8x")]
-offset_top = 242.0
-offset_right = 400.0
-offset_bottom = 492.0
+layout_mode = 2
 
 [node name="FighterView4" parent="." instance=ExtResource("1_0fu8x")]
-offset_left = 392.0
-offset_top = 242.0
-offset_right = 792.0
-offset_bottom = 492.0
+layout_mode = 2
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

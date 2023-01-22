@@ -1,27 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci71jbhtxdmji"]
+[gd_scene load_steps=4 format=3 uid="uid://cpqo6colxia25"]
 
-[ext_resource type="Script" path="res://world/player_body/player_body.gd" id="1_ynect"]
-[ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://_assets/art/square_10_by_10.png" id="2_wt3mc"]
+[ext_resource type="Script" path="res://world/player_character/player_character.gd" id="1_82wwt"]
+[ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://_assets/art/square_10_by_10.png" id="2_uq6y7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1f3r"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm2ce"]
 size = Vector2(49.4975, 49.4975)
 
 [node name="PlayerBody" type="CharacterBody2D" groups=["PLAYER"]]
 position = Vector2(114, 69)
-script = ExtResource("1_ynect")
+script = ExtResource("1_82wwt")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, 3.05176e-05)
 rotation = -0.785398
-shape = SubResource("RectangleShape2D_d1f3r")
+shape = SubResource("RectangleShape2D_lm2ce")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
 texture_filter = 1
 rotation = -0.785398
 scale = Vector2(5, 5)
-texture = ExtResource("2_wt3mc")
+texture = ExtResource("2_uq6y7")
 
 [node name="ColorRect" type="ColorRect" parent="Sprite"]
 show_behind_parent = true

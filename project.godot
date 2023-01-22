@@ -8,46 +8,29 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Resource",
-"class": &"Ability",
-"language": &"GDScript",
-"path": "res://_data/ability/ability.gd"
-}, {
-"base": "Resource",
-"class": &"Creature",
-"language": &"GDScript",
-"path": "res://_data/creature/creature.gd"
-}, {
-"base": "Object",
-"class": &"Fighter",
-"language": &"GDScript",
-"path": "res://fighter/fighter.gd"
-}]
-_global_script_class_icons={
-"Ability": "",
-"Creature": "",
-"Fighter": ""
-}
-
 [application]
 
 config/name="Diamond"
 run/main_scene="res://world/world.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
-boot_splash/show_image=false
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
 Player="*res://player/player.gd"
+SceneSwitcher="*res://utility/scene_switcher.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor]
+
+export/convert_text_resources_to_binary=true
 
 [input]
 

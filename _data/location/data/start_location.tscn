@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://c43aahxoilxal"]
+
+[ext_resource type="PackedScene" uid="uid://cerdey02xv82v" path="res://_data/location/location.tscn" id="1_myai6"]
+[ext_resource type="PackedScene" uid="uid://bvgmxpfrjx2kr" path="res://world/hostile_area/hostile_area.tscn" id="2_3tdkq"]
+[ext_resource type="Resource" uid="uid://crcbr6hu1oxfr" path="res://_data/creature/data/bat.tres" id="3_s8qav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mykxx"]
+size = Vector2(1380, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5gcn"]
+size = Vector2(50, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwqyy"]
+size = Vector2(1380, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvlor"]
+size = Vector2(50, 720)
+
+[node name="StartLocation" instance=ExtResource("1_myai6")]
+
+[node name="Background" type="ColorRect" parent="." index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[node name="TopWall" type="StaticBody2D" parent="Walls" index="0"]
+position = Vector2(640, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall" index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_mykxx")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls" index="1"]
+position = Vector2(1305, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall" index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_n5gcn")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls" index="2"]
+position = Vector2(640, 745)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall" index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_dwqyy")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls" index="3"]
+position = Vector2(-25, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall" index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_wvlor")
+
+[node name="HostileArea" parent="HostileAreas" index="0" instance=ExtResource("2_3tdkq")]
+possible_creatures = [ExtResource("3_s8qav")]

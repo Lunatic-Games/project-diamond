@@ -1,25 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://041puil2kord"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://_assets/art/square_10_by_10.png" id="1_bm4ks"]
-[ext_resource type="Script" path="res://world/npc/npc.gd" id="1_wos12"]
+[ext_resource type="Script" path="res://world/npc/npc.gd" id="1_u5vdl"]
+[ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://_assets/art/square_10_by_10.png" id="2_mle2q"]
+[ext_resource type="PackedScene" uid="uid://p8n5n43f10yg" path="res://world/interact_area/interact_area.tscn" id="3_3xieb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5eb30"]
 size = Vector2(48.7904, 49.4975)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5t2h"]
-size = Vector2(125, 125)
-
 [node name="NPC" type="StaticBody2D"]
 position = Vector2(356, 360)
-script = ExtResource("1_wos12")
+script = ExtResource("1_u5vdl")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.648, 0.7068, 0.9, 1)
 rotation = 0.785397
 scale = Vector2(5, 5)
-texture = ExtResource("1_bm4ks")
+texture = ExtResource("2_mle2q")
 
-[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+[node name="Background" type="ColorRect" parent="Sprite"]
 show_behind_parent = true
 offset_left = -5.0
 offset_top = -5.0
@@ -32,21 +30,6 @@ position = Vector2(0.25, 0.25)
 rotation = 0.785397
 shape = SubResource("RectangleShape2D_5eb30")
 
-[node name="InteractArea" type="Area2D" parent="."]
+[node name="InteractArea" parent="." instance=ExtResource("3_3xieb")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
-rotation = 0.785397
-shape = SubResource("RectangleShape2D_l5t2h")
-
-[node name="InteractPrompt" type="Label" parent="."]
-visible = false
-offset_left = -20.0
-offset_top = -77.0
-offset_right = 20.0
-offset_bottom = -32.0
-theme_override_font_sizes/font_size = 30
-text = "E"
-horizontal_alignment = 1
-
-[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
-[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
+[connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]

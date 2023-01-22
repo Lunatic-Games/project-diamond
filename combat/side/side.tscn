@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2yqodd148wj"]
+
+[ext_resource type="PackedScene" uid="uid://dg85ccysuydx6" path="res://combat/health_bar/health_bar.tscn" id="1_4307x"]
+[ext_resource type="Script" path="res://combat/side/side.gd" id="1_su7fn"]
+
+[node name="Side" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 360.0
+offset_right = 256.0
+offset_bottom = 360.0
+script = ExtResource("1_su7fn")
+
+[node name="SpawnMarker" type="Marker2D" parent="."]
+
+[node name="HealthBar" parent="." instance=ExtResource("1_4307x")]
+layout_mode = 2
+offset_left = -96.0
+offset_top = -141.0
+offset_right = 104.0
+offset_bottom = -116.0

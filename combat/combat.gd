@@ -1,103 +1,60 @@
 extends Control
 
 
-@export var enemy_creature: Resource
-@export var enemy_ability: Ability
-
-@onready var ally_position := $AllyPosition
-@onready var enemy_position := $EnemyPosition
-
-@onready var ally_health_bar := $HealthBars/AllyHealthBar
-@onready var enemy_health_bar := $HealthBars/EnemyHealthBar
-
 @onready var ability_panel = $AbilityPanel
 @onready var capture_panel = $CapturePanel
 
-@onready var ability_processor = $AbilityProcessor
+var ability_processor = preload("res://combat/ability_processor.gd").new()
+var is_wild_encounter: bool = false
 
-var ally_fighter: Fighter
-var enemy_fighter: Fighter
-
-var ally_sprite: Node2D
-var enemy_sprite: Node2D
-
-var is_wild_encounter = false
+@onready var player_side: Side = $PlayerSide
+@onready var enemy_side: Side = $EnemySide
 
 
-func _ready():
-	start_combat()
-
-func start_combat():
-	ally_fighter = Player.get_next_ready_fighter()
-	assert(ally_fighter != null)
-	ally_sprite = instantiate_fighter(ally_fighter, ally_position.position)
+func init(enemy_party: Party, is_wild_encounter) -> void:
+	self.is_wild_encounter = is_wild_encounter
 	
-	if enemy_creature:
-		enemy_fighter = Fighter.new(enemy_creature)
-		enemy_sprite = instantiate_fighter(enemy_fighter, enemy_position.position)
-
-
-func instantiate_fighter(fighter: Fighter, pos: Vector2) -> Node2D:
-	var sprite = fighter.creature_scene.instantiate()
-	add_child(sprite)
-	sprite.position = pos
+	player_side.init(Player.party)
+	player_side.defeated.connect(_on_player_side_defeated)
 	
-	fighter.health_changed.connect(_on_fighter_health_changed.bind(fighter))
-	fighter.died.connect(_on_fighter_died.bind(fighter))
-	_on_fighter_health_changed(0, fighter)
+	enemy_side.init(enemy_party)
+	enemy_side.defeated.connect(_on_enemy_side_defeated)
+
+
+func _on_ability_panel_ability_selected(ability: Ability) -> void:
+	player_side.new_turn()
+	enemy_side.new_turn()
 	
-	return sprite
-
-
-func unhook_fighter(fighter: Fighter):
-	fighter.health_changed.disconnect(_on_fighter_health_changed)
-	fighter.died.disconnect(_on_fighter_died)
-
-
-func _on_ability_panel_ability_selected(ability: Ability):
-	ally_health_bar.reset_stats()
-	enemy_health_bar.reset_stats()
+	ability_processor.process_ability(ability, player_side.active_fighter,
+		enemy_side.active_fighter)
 	
-	ability_processor.process_ability(ability, ally_fighter, enemy_fighter)
-	if enemy_ability:
-		ability_processor.process_ability(enemy_ability, enemy_fighter, ally_fighter)
-
-	
-func _on_fighter_health_changed(amount_changed: int, fighter: Fighter):
-	if fighter == ally_fighter:
-		ally_health_bar.update(amount_changed, fighter)
-	elif fighter == enemy_fighter:
-		enemy_health_bar.update(amount_changed, fighter)
+#	var enemy_ability: Ability = enemy_side.active_fighter.get_random_ability()
+#	if enemy_ability:
+#		ability_processor.process_ability(enemy_ability, enemy_side.active_fighter,
+#			player_side.active_fighter)
 
 
-func _on_fighter_died(_fighter: Fighter):
-	if _fighter == ally_fighter:
-		var next = Player.get_next_ready_fighter([ally_fighter])
-		if next:
-			print("Swapping out")
-			unhook_fighter(ally_fighter)
-			ally_fighter = next
-			ally_sprite.queue_free()
-			ally_sprite = instantiate_fighter(ally_fighter, ally_position.position)
-			ally_health_bar.reset_stats()
-		else:
-			print("LOST")
-			Player.respawn()
-			get_tree().change_scene_to_file("res://world/world.tscn")
-		return
-		
-	ability_panel.hide()
-	capture_panel.show()
+func _on_player_side_defeated() -> void:
+	get_tree().change_scene_to_file("res://world/world.tscn")
+	Player.respawn()
 
 
-func _on_capture_panel_captured():
-	Player.add_to_party(enemy_fighter)
+func _on_enemy_side_defeated() -> void:
+	if is_wild_encounter:
+		ability_panel.hide()
+		capture_panel.show()
+	else:
+		get_tree().change_scene_to_file("res://world/world.tscn")
+
+
+func _on_capture_panel_captured() -> void:
+	Player.party.add_fighter(enemy_side.active_fighter, true)
 	get_tree().change_scene_to_file("res://world/world.tscn")
 
 
-func _on_capture_panel_got_away():
+func _on_capture_panel_got_away() -> void:
 	get_tree().change_scene_to_file("res://world/world.tscn")
 
 
-func _on_capture_panel_released():
+func _on_capture_panel_released() -> void:
 	get_tree().change_scene_to_file("res://world/world.tscn")
