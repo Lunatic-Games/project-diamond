@@ -9,13 +9,13 @@ var is_player_in_area: bool = false
 @onready var prompt: Label = $Prompt
 
 
-func _ready():
+func _ready() -> void:
 	prompt.hide()
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and is_player_in_area:
-		emit_signal("interacted_with")
+		interacted_with.emit()
 
 
 func _on_body_entered(body):

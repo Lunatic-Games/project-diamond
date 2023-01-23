@@ -32,9 +32,9 @@ func take_damage(amount: int) -> int:
 	var damage_dealt: int = health_before - current_health
 	
 	if damage_dealt:
-		emit_signal("health_changed", -damage_dealt)
+		health_changed.emit(-damage_dealt)
 	if damage_dealt and current_health == 0:
-		emit_signal("died")
+		died.emit()
 	
 	return damage_dealt
 
@@ -48,7 +48,7 @@ func heal(amount: int) -> int:
 	var health_healed: int = current_health - health_before
 	
 	if health_healed:
-		emit_signal("health_changed", health_healed)
+		health_changed.emit(health_healed)
 	
 	return health_healed
 

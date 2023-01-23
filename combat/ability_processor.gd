@@ -1,6 +1,6 @@
 extends Node
 
-	
+
 func process_ability(ability: Ability, caster: Fighter, non_caster: Fighter) -> void:
 	var damage_dealt: int = 0
 	

@@ -18,3 +18,13 @@ func get_hostile_areas() -> Array[HostileArea]:
 			hostile_areas.append(hostile_area)
 	
 	return hostile_areas
+
+
+func get_npcs() -> Array[NPC]:
+	var npcs: Array[NPC] = []
+	
+	for npc in get_tree().get_nodes_in_group("NPC"):
+		if is_ancestor_of(npc):
+			npcs.append(npc)
+	
+	return npcs

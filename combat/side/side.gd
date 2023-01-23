@@ -46,7 +46,7 @@ func hook_up_active_fighter() -> void:
 
 func unhook_active_fighter() -> void:
 	active_fighter.health_changed.disconnect(_on_active_fighter_health_changed)
-	active_fighter.die.disconnect(_on_active_fighter_died)
+	active_fighter.died.disconnect(_on_active_fighter_died)
 
 
 func _on_active_fighter_health_changed(amount_changed: int):
@@ -58,9 +58,6 @@ func _on_active_fighter_died() -> void:
 	
 	if next:
 		print("Swapping out")
-		unhook_active_fighter()
-		sprite.queue_free()
-		
 		set_new_active_fighter(next)
 		health_bar.reset_stats()
 	else:

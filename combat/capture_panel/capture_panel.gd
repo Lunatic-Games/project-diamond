@@ -13,13 +13,13 @@ const SUCCESS_RATIO: float = 1.0
 
 func _on_capture_button_pressed() -> void:
 	if randf() < SUCCESS_RATIO:
-		emit_signal("captured")
+		captured.emit()
 	else:
-		emit_signal("got_away")
+		got_away.emit()
 
 
 func _on_release_button_pressed() -> void:
-	emit_signal("released")
+	released.emit()
 
 
 func _on_visibility_changed() -> void:

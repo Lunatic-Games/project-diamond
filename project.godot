@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 Player="*res://player/player.gd"
 SceneSwitcher="*res://utility/scene_switcher.gd"
+WorldPersistence="*res://world/world_persistence.gd"
 
 [display]
 

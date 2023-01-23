@@ -21,4 +21,4 @@ func _ready() -> void:
 
 
 func _on_ability_button_pressed(_button: Button, ability: Ability) -> void:
-	emit_signal("ability_selected", ability)
+	ability_selected.emit(ability)

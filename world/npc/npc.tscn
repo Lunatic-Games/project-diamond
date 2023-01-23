@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://rtffi64ythhb"]
 
 [ext_resource type="Script" path="res://world/npc/npc.gd" id="1_u5vdl"]
 [ext_resource type="Texture2D" uid="uid://cisbvyow6rv6k" path="res://_assets/art/square_10_by_10.png" id="2_mle2q"]
+[ext_resource type="Resource" uid="uid://crcbr6hu1oxfr" path="res://_data/creature/data/bat.tres" id="2_vt03p"]
 [ext_resource type="PackedScene" uid="uid://p8n5n43f10yg" path="res://world/interact_area/interact_area.tscn" id="3_3xieb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5eb30"]
 size = Vector2(48.7904, 49.4975)
 
-[node name="NPC" type="StaticBody2D"]
+[node name="NPC" type="StaticBody2D" groups=["NPC"]]
 position = Vector2(356, 360)
 script = ExtResource("1_u5vdl")
+creatures_in_party = [ExtResource("2_vt03p"), ExtResource("2_vt03p")]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.648, 0.7068, 0.9, 1)

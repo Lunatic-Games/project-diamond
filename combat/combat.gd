@@ -11,8 +11,8 @@ var is_wild_encounter: bool = false
 @onready var enemy_side: Side = $EnemySide
 
 
-func init(enemy_party: Party, is_wild_encounter) -> void:
-	self.is_wild_encounter = is_wild_encounter
+func init(enemy_party: Party, is_combat_wild_encounter) -> void:
+	is_wild_encounter = is_combat_wild_encounter
 	
 	player_side.init(Player.party)
 	player_side.defeated.connect(_on_player_side_defeated)
@@ -44,17 +44,17 @@ func _on_enemy_side_defeated() -> void:
 		ability_panel.hide()
 		capture_panel.show()
 	else:
-		get_tree().change_scene_to_file("res://world/world.tscn")
+		SceneSwitcher.to_world()
 
 
 func _on_capture_panel_captured() -> void:
 	Player.party.add_fighter(enemy_side.active_fighter, true)
-	get_tree().change_scene_to_file("res://world/world.tscn")
+	SceneSwitcher.to_world()
 
 
 func _on_capture_panel_got_away() -> void:
-	get_tree().change_scene_to_file("res://world/world.tscn")
+	SceneSwitcher.to_world()
 
 
 func _on_capture_panel_released() -> void:
-	get_tree().change_scene_to_file("res://world/world.tscn")
+	SceneSwitcher.to_world()

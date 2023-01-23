@@ -7,8 +7,9 @@ const MAX_SIZE: int = 4
 var fighters: Array[Fighter] = []
 
 
-func _init(fighters: Array[Fighter]):
-	self.fighters = fighters
+func _init(fighters_in_party: Array[Fighter]) -> void:
+	for fighter in fighters_in_party:
+		add_fighter(fighter)
 
 
 func add_fighter(fighter: Fighter, should_full_restore_fighter: bool = false) -> void:
