@@ -5,6 +5,7 @@ extends Object
 signal health_changed(amount: int)
 signal died
 
+var name: String = "N/A"
 var max_health: int
 var current_health: int
 var creature_scene: PackedScene

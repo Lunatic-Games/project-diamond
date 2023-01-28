@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cl0gq0e7rsofd"]
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://cl0gq0e7rsofd"]
 
 [ext_resource type="Script" path="res://_data/ability/ability.gd" id="1_ruyc6"]
 
 [resource]
 script = ExtResource("1_ruyc6")
 name = "Wing Slash"
-damage_amount = 1
+damage_amount = 2
 min_number_of_hits = 1
 max_number_of_hits = 1
 life_vamp_ratio = 0.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnn0kq6uf8qri"]
+[gd_scene load_steps=6 format=3 uid="uid://dnn0kq6uf8qri"]
 
 [ext_resource type="Script" path="res://combat/combat.gd" id="1_a0fvq"]
 [ext_resource type="PackedScene" uid="uid://cgqxdy3dcm0qq" path="res://combat/ability_panel/ability_panel.tscn" id="3_m6hf4"]
+[ext_resource type="PackedScene" uid="uid://bljiex7i4nhik" path="res://combat/ability_processor/ability_processor.tscn" id="5_kmgit"]
 [ext_resource type="PackedScene" uid="uid://bm86063c47is6" path="res://combat/capture_panel/capture_panel.tscn" id="7_0l377"]
 [ext_resource type="PackedScene" uid="uid://c2yqodd148wj" path="res://combat/side/side.tscn" id="7_daoaw"]
 
@@ -15,13 +16,12 @@ grow_vertical = 2
 script = ExtResource("1_a0fvq")
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -16.0
-offset_right = 4.0
-offset_bottom = -16.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0980392, 0.0980392, 0.0980392, 1)
@@ -51,6 +51,9 @@ offset_left = 974.0
 offset_top = 361.0
 offset_right = 974.0
 offset_bottom = 361.0
+
+[node name="AbilityProcessor" parent="." instance=ExtResource("5_kmgit")]
+layout_mode = 1
 
 [connection signal="ability_selected" from="AbilityPanel" to="." method="_on_ability_panel_ability_selected"]
 [connection signal="captured" from="CapturePanel" to="." method="_on_capture_panel_captured"]

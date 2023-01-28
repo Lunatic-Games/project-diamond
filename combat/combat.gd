@@ -1,41 +1,62 @@
 extends Control
 
 
-@onready var ability_panel = $AbilityPanel
-@onready var capture_panel = $CapturePanel
+const ENEMY_ATTACK_OVERRIDE = preload("res://_data/ability/data/wing_slash.tres")
 
-var ability_processor = preload("res://combat/ability_processor.gd").new()
 var is_wild_encounter: bool = false
 
 @onready var player_side: Side = $PlayerSide
 @onready var enemy_side: Side = $EnemySide
+
+@onready var ability_panel = $AbilityPanel
+@onready var capture_panel = $CapturePanel
+
+@onready var ability_processor: Control = $AbilityProcessor
 
 
 func init(enemy_party: Party, is_combat_wild_encounter) -> void:
 	is_wild_encounter = is_combat_wild_encounter
 	
 	player_side.init(Player.party)
-	player_side.defeated.connect(_on_player_side_defeated)
-	
 	enemy_side.init(enemy_party)
-	enemy_side.defeated.connect(_on_enemy_side_defeated)
 
 
 func _on_ability_panel_ability_selected(ability: Ability) -> void:
-	player_side.new_turn()
-	enemy_side.new_turn()
+	ability_panel.hide()
+	
+	# TODO: Un-hack this
+	player_side.active_fighter.name = "ALLY CREATURE"
+	enemy_side.active_fighter.name = "ENEMY CREATURE"
 	
 	ability_processor.process_ability(ability, player_side.active_fighter,
 		enemy_side.active_fighter)
+	await(ability_processor.processing_done)
 	
-#	var enemy_ability: Ability = enemy_side.active_fighter.get_random_ability()
-#	if enemy_ability:
-#		ability_processor.process_ability(enemy_ability, enemy_side.active_fighter,
-#			player_side.active_fighter)
+	if enemy_side.is_active_fighter_dead():
+		var has_next_fighter = enemy_side.try_next_fighter()
+		if has_next_fighter:
+			ability_panel.show()
+		else:
+			_on_enemy_side_defeated()
+		return
+	
+	#var enemy_ability: Ability = enemy_side.active_fighter.get_random_ability()
+	var enemy_ability: Ability = ENEMY_ATTACK_OVERRIDE
+	ability_processor.process_ability(enemy_ability, enemy_side.active_fighter,
+		player_side.active_fighter)
+	await(ability_processor.processing_done)
+	
+	if player_side.is_active_fighter_dead():
+		var has_next_fighter = player_side.try_next_fighter()
+		if !has_next_fighter:
+			_on_player_side_defeated()
+			return
+	
+	ability_panel.show()
 
 
 func _on_player_side_defeated() -> void:
-	get_tree().change_scene_to_file("res://world/world.tscn")
+	SceneSwitcher.to_world()
 	Player.respawn()
 
 
