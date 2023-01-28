@@ -7,9 +7,7 @@ signal encounter_triggered
 @export_range(0.0, 1.0) var encounter_chance: float  # For moving one pixel
 @export var minimum_amount_travelled: float
 
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
-
-var _player_in_area: bool = false
+var player_in_area: bool = false
 var _player_last_position: Vector2
 var _additive_distance_travelled: float = 0.0
 
@@ -20,19 +18,13 @@ func _process(_delta):
 	for body in get_overlapping_bodies():
 		if not body.is_in_group("PLAYER"):
 			return
+		
 		is_player_detected = true
-		
-		if not _player_in_area:
-			_player_in_area = true
-			_player_last_position = body.global_position
-			break
-		
-		check_for_encounter(_player_last_position.distance_to(body.global_position))
+		if player_in_area:
+			check_for_encounter(_player_last_position.distance_to(body.global_position))
 		_player_last_position = body.global_position
 	
-	if not is_player_detected:
-		_player_in_area = false
-		_additive_distance_travelled = 0.0
+	player_in_area = is_player_detected
 
 
 func check_for_encounter(distance_travelled: float):

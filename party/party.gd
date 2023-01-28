@@ -7,7 +7,7 @@ const MAX_SIZE: int = 4
 var fighters: Array[Fighter] = []
 
 
-func _init(fighters_in_party: Array[Fighter]) -> void:
+func _init(fighters_in_party: Array[Fighter] = []) -> void:
 	for fighter in fighters_in_party:
 		add_fighter(fighter)
 

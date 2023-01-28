@@ -20,5 +20,5 @@ extends Resource
 
 func _ready() -> void:
 	assert(name, "Every ability should have a name")
-	assert(!full_heal or !heal_amount, "Either specify a full heal or a heal amount, but not both")
+	assert(!full_heal or !heal_amount, "Either full heal or a heal amount should be specified, not both")
 	assert(max_number_of_hits >= min_number_of_hits, "Max number of hits should be greater than min number")

@@ -12,7 +12,7 @@ position = Vector2(640, 360)
 script = ExtResource("1_b7w21")
 possible_creatures = []
 encounter_chance = 0.005
-minimum_amount_travelled = 100.0
+minimum_amount_travelled = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dgft2")

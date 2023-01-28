@@ -10,7 +10,7 @@ signal encounter_triggered(Party)
 func _on_interact_area_interacted_with() -> void:
 	assert(creatures_in_party, "NPC has no creatures for an encounter")
 	
-	var party: Party = Party.new([])
+	var party: Party = Party.new()
 	
 	for creature in creatures_in_party:
 		var fighter: Fighter = Fighter.new(creature)

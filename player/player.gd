@@ -1,7 +1,7 @@
 extends Node
 
 
-var party: Party = Party.new([])
+var party: Party = Party.new()
 
 
 func _ready() -> void:

@@ -5,11 +5,6 @@ extends Node2D
 @onready var default_spawn_marker: Marker2D = $DefaultSpawnMarker
 
 
-func _ready() -> void:
-	if get_tree().current_scene == self:
-		pass
-
-
 func get_hostile_areas() -> Array[HostileArea]:
 	var hostile_areas: Array[HostileArea] = []
 	
