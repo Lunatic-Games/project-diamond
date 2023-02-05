@@ -4,7 +4,15 @@ extends StaticBody2D
 
 signal encounter_triggered(Party)
 
+@export var dialog: Array[String]
+@export_group("Combat")
+@export var is_hostile: bool = false
 @export var creatures_in_party: Array[Creature]
+
+
+func _ready():
+	assert(!is_hostile or creatures_in_party.size() > 0, 
+		"Hostile NPC does not have a party specified.")
 
 
 func _on_interact_area_interacted_with() -> void:

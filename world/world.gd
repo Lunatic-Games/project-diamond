@@ -29,23 +29,17 @@ func setup_location() -> void:
 	location.add_child(player_character)
 	player_character.global_position = location.default_spawn_marker.global_position
 
-	for hostile_area in location.get_hostile_areas():
-		hostile_area.encounter_triggered.connect(_on_hostile_area_encounter_triggered)
-		
-	for npc in location.get_npcs():
-		npc.encounter_triggered.connect(_on_npc_encounter_triggered)
+	location.wild_encounter_triggered.connect(_on_location_wild_encounter_triggered)
+	location.npc_encounter_triggered.connect(_on_location_npc_encounter_triggered)
 
 
-func _on_hostile_area_encounter_triggered(creature: Creature) -> void:
+func _on_location_wild_encounter_triggered(wild_party: Party) -> void:
 	WorldPersistence.last_player_position = player_character.global_position
 	
-	var enemy_fighter: Fighter = Fighter.new(creature)
-	var enemy_party: Party = Party.new([enemy_fighter])
-	
-	SceneSwitcher.to_combat(enemy_party, true)
+	SceneSwitcher.to_combat(wild_party, true)
 
 
-func _on_npc_encounter_triggered(npc_party: Party) -> void:
+func _on_location_npc_encounter_triggered(npc_party: Party) -> void:
 	WorldPersistence.last_player_position = player_character.global_position
 	
 	SceneSwitcher.to_combat(npc_party, false)

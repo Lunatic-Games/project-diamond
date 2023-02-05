@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://lg702iejbjhn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5j6nt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyox8"]
 bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncxvt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uljmk"]
 bg_color = Color(0.137255, 0.137255, 0.137255, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fnw8k"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ckcla"]
 
 [node name="AbilityButton" type="Button"]
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5j6nt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ncxvt")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fnw8k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lyox8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uljmk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ckcla")
 text = "Hello"

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnrbbppsxxoph"]
+[gd_scene load_steps=2 format=3 uid="uid://7cudvwikqxt5"]
 
-[ext_resource type="Script" path="res://ui_elements/dialog_box/dialog_box.gd" id="1_nexyb"]
+[ext_resource type="Script" path="res://dialog_manager/dialog_box/dialog_box.gd" id="1_qbonc"]
 
 [node name="DialogBox" type="ColorRect"]
 offset_left = 350.0
@@ -8,7 +8,21 @@ offset_top = 427.0
 offset_right = 822.0
 offset_bottom = 560.0
 color = Color(0.0588235, 0.0588235, 0.0588235, 1)
-script = ExtResource("1_nexyb")
+script = ExtResource("1_qbonc")
+
+[node name="Border" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.901961, 0.901961, 0.901961, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

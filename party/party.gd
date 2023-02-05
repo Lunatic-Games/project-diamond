@@ -25,6 +25,10 @@ func remove_fighter(fighter: Fighter) -> void:
 	assert(fighter in fighters, "Trying to remove a fighter from a party that it isn't in")
 
 
+func has_next_available_fighter(ignore_list: Array = []) -> bool:
+	return get_next_available_fighter(ignore_list) != null
+
+
 func get_next_available_fighter(ignore_list: Array = []) -> Fighter:
 	for fighter in fighters:
 		if fighter not in ignore_list and not fighter.is_dead():

@@ -63,3 +63,4 @@ possible_creatures = [ExtResource("3_s8qav")]
 
 [node name="NPC" parent="NPCs" index="0" instance=ExtResource("4_7ojo8")]
 position = Vector2(328, 365)
+is_hostile = true
