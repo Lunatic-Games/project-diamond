@@ -2,7 +2,7 @@ class_name NPC
 extends StaticBody2D
 
 
-signal encounter_triggered(Party)
+signal interacted_with
 
 @export var dialog: Array[String]
 @export_group("Combat")
@@ -15,13 +15,16 @@ func _ready():
 		"Hostile NPC does not have a party specified.")
 
 
-func _on_interact_area_interacted_with() -> void:
+func get_party() -> Party:
 	assert(creatures_in_party, "NPC has no creatures for an encounter")
-	
 	var party: Party = Party.new()
 	
 	for creature in creatures_in_party:
 		var fighter: Fighter = Fighter.new(creature)
 		party.add_fighter(fighter)
 		
-	encounter_triggered.emit(party)
+	return party
+
+
+func _on_interact_area_interacted_with() -> void:
+	interacted_with.emit()

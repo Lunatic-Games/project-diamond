@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs0rwjocopgj0"]
+[gd_scene load_steps=5 format=3 uid="uid://cs0rwjocopgj0"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_er07r"]
 [ext_resource type="PackedScene" uid="uid://c43aahxoilxal" path="res://_data/location/data/start_location.tscn" id="2_u18mi"]
+[ext_resource type="PackedScene" uid="uid://cc4pekvjc4nsk" path="res://dialog_manager/dialog_manager.tscn" id="3_dd4id"]
 [ext_resource type="PackedScene" uid="uid://b1hedcpgl4tbm" path="res://menus/party_view/party_view.tscn" id="5_djaws"]
 
 [node name="World" type="Node2D"]
@@ -11,5 +12,18 @@ script = ExtResource("1_er07r")
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
+[node name="DialogManager" parent="Overlay" instance=ExtResource("3_dd4id")]
+
+[node name="DialogBox" parent="Overlay/DialogManager" index="0"]
+visible = false
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -169.0
+offset_bottom = -36.0
+grow_vertical = 0
+
 [node name="PartyView" parent="Overlay" instance=ExtResource("5_djaws")]
 visible = false
+
+[editable path="Overlay/DialogManager"]

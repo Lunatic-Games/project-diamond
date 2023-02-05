@@ -15,7 +15,8 @@ func _ready() -> void:
 
 
 func _input(event) -> void:
-	if event is InputEventMouseButton and event.pressed and dialog_box.visible:
+	var mouse_press = event is InputEventMouseButton and event.pressed
+	if dialog_box.visible and (event.is_action_pressed("interact") or mouse_press):
 		get_viewport().set_input_as_handled()
 		_next()
 
@@ -31,7 +32,10 @@ func display_and_wait(text: String) -> void:
 
 
 func queue_text(text: String) -> void:
-	queued_text.append(text)
+	if dialog_box.visible:
+		queued_text.append(text)
+	else:
+		display_text(text)
 
 
 func queue_and_wait(text: String) -> void:

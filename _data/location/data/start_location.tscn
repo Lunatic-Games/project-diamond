@@ -29,6 +29,59 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
+[node name="TutorialText" type="Control" parent="Background" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Background/TutorialText" index="0"]
+offset_left = 547.0
+offset_top = 144.0
+offset_right = 750.0
+offset_bottom = 234.0
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 30
+text = "WASD/Arrows
+to move"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Background/TutorialText" index="1"]
+offset_left = 98.0
+offset_top = 180.0
+offset_right = 371.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 30
+text = "NPC
+Can talk and battle"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Background/TutorialText" index="2"]
+offset_left = 862.0
+offset_top = 70.0
+offset_right = 1206.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 30
+text = "\"Grass\"
+Chance of an encounter
+with a wild creature"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Background/TutorialText" index="3"]
+offset_left = 484.0
+offset_top = 581.0
+offset_right = 828.0
+offset_bottom = 716.0
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 30
+text = "Press \"Q\" to view your
+party"
+horizontal_alignment = 1
+
 [node name="TopWall" type="StaticBody2D" parent="Walls" index="0"]
 position = Vector2(640, -25)
 
@@ -58,9 +111,10 @@ visible = false
 shape = SubResource("RectangleShape2D_wvlor")
 
 [node name="HostileArea" parent="HostileAreas" index="0" instance=ExtResource("2_3tdkq")]
-position = Vector2(913, 368)
+position = Vector2(1051, 368)
 possible_creatures = [ExtResource("3_s8qav")]
 
 [node name="NPC" parent="NPCs" index="0" instance=ExtResource("4_7ojo8")]
-position = Vector2(328, 365)
+position = Vector2(227, 334)
+dialog = ["Are you a fellow monster trainer?", "I challenge you to a battle!"]
 is_hostile = true

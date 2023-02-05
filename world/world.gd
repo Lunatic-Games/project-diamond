@@ -7,6 +7,7 @@ var player_character: CharacterBody2D
 
 @onready var location: Location = $StartLocation
 @onready var party_view: GridContainer = $Overlay/PartyView
+@onready var dialog_manager: DialogManager = $Overlay/DialogManager
 
 
 func _ready() -> void:
@@ -30,7 +31,7 @@ func setup_location() -> void:
 	player_character.global_position = location.default_spawn_marker.global_position
 
 	location.wild_encounter_triggered.connect(_on_location_wild_encounter_triggered)
-	location.npc_encounter_triggered.connect(_on_location_npc_encounter_triggered)
+	location.npc_interacted_with.connect(_on_npc_interacted_with)
 
 
 func _on_location_wild_encounter_triggered(wild_party: Party) -> void:
@@ -39,7 +40,12 @@ func _on_location_wild_encounter_triggered(wild_party: Party) -> void:
 	SceneSwitcher.to_combat(wild_party, true)
 
 
-func _on_location_npc_encounter_triggered(npc_party: Party) -> void:
-	WorldPersistence.last_player_position = player_character.global_position
+func _on_npc_interacted_with(npc: NPC) -> void:
+	if npc.dialog:
+		for text in npc.dialog:
+			dialog_manager.queue_text(text)
+		await(dialog_manager.finished_all_text)
 	
-	SceneSwitcher.to_combat(npc_party, false)
+	if npc.is_hostile:
+		WorldPersistence.last_player_position = player_character.global_position
+		SceneSwitcher.to_combat(npc.get_party(), false)
